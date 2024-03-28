@@ -1,4 +1,4 @@
-module.exports = require('bindings')('cryptonote.node')
+module.exports = require('bindings')('cryptonote-zano.node')
 
 const bignum  = require('bignum');
 
