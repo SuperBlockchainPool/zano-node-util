@@ -62,6 +62,8 @@ namespace epee
 	t_pod_type transform_str_to_t_pod(const std::string& a)
 	{
 		t_pod_type res = AUTO_VAL_INIT(res);
+    if (a.empty())
+      return res;
     if (!epee::string_tools::hex_to_pod(a, res))
       throw std::runtime_error(std::string("Unable to transform \"") + a + "\" to pod type " + typeid(t_pod_type).name());
 		return res;
@@ -83,6 +85,18 @@ namespace epee
     }
     return res;
   }
+
+  // helper for blob-to-base64 serialization
+  inline std::string transfrom_binbuf_to_base64(const std::string& a)
+  {
+    return epee::string_encoding::base64_encode(a);
+  }
+
+  inline std::string transform_base64_to_binbuf(const std::string& a)
+  {
+    return epee::string_encoding::base64_decode(a);
+  }
+
 	//-------------------------------------------------------------------------------------------------------------------
 #pragma pack(push, 1)
   template<class first_t, class second_t>

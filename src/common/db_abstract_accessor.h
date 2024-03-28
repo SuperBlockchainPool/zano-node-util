@@ -280,6 +280,8 @@ namespace tools
       template<class t_pod_key, class t_object>
       bool get_t_object(container_handle h, const t_pod_key& k, t_object& obj) const
       {
+        if (!m_is_open)
+          return false;
         performance_data& m_performance_data = m_gperformance_data;
         //TRY_ENTRY();
         std::string res_buff;
@@ -600,6 +602,8 @@ namespace tools
         bdb.get_backend()->enumerate(m_h, &local_enum_handler);
       }
 
+      // callback format: bool cb(uint64_t index, const key_t& key, const value_t& value)
+      // cb should return true to continue, false -- to stop enumeration 
       template<class t_cb>
       void enumerate_items(t_cb cb)const 
       {
