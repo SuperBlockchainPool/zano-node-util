@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "cryptonote",
+      "target_name": "cryptonote-zano",
       "sources": [
         "src/main.cc",
         "src/currency_core/currency_format_utils.cpp",
